@@ -8,7 +8,9 @@ const ProductManager = () => {
   // 🔹 Cargar productos al iniciar
   useEffect(() => {
     const fetchProductos = async () => {
-      const res = await fetch("http://localhost:5000/api/products");
+      // const res = await fetch("http://localhost:5000/api/products");
+      const res = await fetch("https://server-backend-vf5p.onrender.com/api/products");
+
       const data = await res.json();
       setProductos(data);
     };
@@ -29,8 +31,10 @@ const ProductManager = () => {
   const handleEditar = async (p) => {
     const nuevoPrecio = prompt(`Nuevo precio para ${p.nombre}:`, p.precio);
     if (nuevoPrecio === null) return;
+https://server-backend-vf5p.onrender.com
+    //const res = await fetch(`http://localhost:5000/api/products/${p._id}`, {
+    const res = await fetch(`https://server-backend-vf5p.onrender.com/api/products/${p._id}`, {
 
-    const res = await fetch(`http://localhost:5000/api/products/${p._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...p, precio: nuevoPrecio }),
@@ -47,8 +51,9 @@ const ProductManager = () => {
   // 🔹 Eliminar producto
   const handleEliminar = async (id) => {
     if (!window.confirm("¿Seguro que deseas eliminar este producto?")) return;
-
-    const res = await fetch(`http://localhost:5000/api/products/${id}`, {
+https://server-backend-vf5p.onrender.com
+    //const res = await fetch(`http://localhost:5000/api/products/${id}`, {
+    const res = await fetch(`https://server-backend-vf5p.onrender.com/api/products/${id}`, {
       method: "DELETE",
     });
 

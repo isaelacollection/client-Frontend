@@ -23,8 +23,9 @@ export default function Login({ onLogin }) {
   const crearUsuario = async () => {
     setMensaje('');
     try {
-      await axios.post('http://localhost:5000/api/usuarios', {
+      //await axios.post('http://localhost:5000/api/usuarios', {
         // await axios.post('https://backend-sistema-evaluacion.onrender.com/api/usuarios', {
+        await axios.post('https://server-backend-vf5p.onrender.com/api/usuarios', {
         nombre,
         correo,
         password,
@@ -49,9 +50,9 @@ export default function Login({ onLogin }) {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login',
+    //  const res = await fetch('http://localhost:5000/api/auth/login',
         //const res = await fetch('https://backend-sistema-evaluacion.onrender.com/api/auth/login',
-      
+      const res = await fetch('https://server-backend-vf5p.onrender.com/api/auth/login',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
