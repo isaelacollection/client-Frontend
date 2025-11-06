@@ -12,7 +12,8 @@ const ProductList = () => {
       try {
         // const res = await fetch("https://api-ten-jet.vercel.app/products");
        // const res = await fetch("http://localhost:5000/api/products");
-        // https://server-backend-vf5p.onrender.com
+        const res = await fetch(" https://server-backend-vf5p.onrender.com/api/products");
+        //
         // Asegúrate de manejar la respuesta si res.ok es false (ej: 404 o 500)
         if (!res.ok) throw new Error("Error al cargar los productos");
 
