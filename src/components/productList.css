@@ -1,7 +1,9 @@
 /* -------------------------- Estilos para ProductList -------------------------- */
 .main-content {
-    padding: 2rem;
-    max-width: 1200px; /* Limita el ancho general del contenido */
+    padding: 1rem;
+    /* Reducido a 1rem para móviles */
+    max-width: 1280px;
+    /* Ancho máximo aumentado */
     margin: 0 auto;
 }
 
@@ -15,31 +17,44 @@
 
 /* ---------------------------------------------------- */
 /* 1. LAYOUT CRÍTICO: Configura la cuadrícula de productos */
+/* USAMOS GRID para un mejor control de columnas */
 /* ---------------------------------------------------- */
 .products {
-    display: flex;
-    flex-wrap: wrap; /* Permite que los productos pasen a la siguiente línea */
-    gap: 1.5rem; /* Espaciado uniforme entre tarjetas */
-    justify-content: center; /* Centramos los productos en la sección */
+    display: grid;
+    /* Por defecto, en móviles (menos de 640px), 2 columnas */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    /* Espaciado más compacto entre tarjetas */
+    justify-content: center;
+}
+
+/* En tablets y desktop (a partir de 640px), usamos 5 columnas fijas */
+@media (min-width: 640px) {
+    .products {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1.5rem;
+    }
 }
 
 .product-card {
     border: 1px solid #ddd;
     border-radius: 12px;
-    width: 280px; /* ANCHO FIJO (IMPORTANTE) para la tarjeta individual */
-    height: auto; 
-    padding: 1rem;
+    /* Eliminamos el width fijo de 280px. Ahora el tamaño lo da la GRID. */
+    height: auto;
+    padding: 0.75rem;
+    /* Padding reducido para hacerlo más compacto */
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, box-shadow 0.2s;
-    display: flex; 
+    display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* Ajuste para mantener espacio entre imagen y texto */
+    justify-content: flex-start;
 }
 
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -49,18 +64,20 @@
 
 .product-image-container {
     width: 100%;
-    height: 300px; /* <<-- ALTURA FIJA para el contenedor (ajustado de 250px a 300px) -->> */
-    margin-bottom: 1rem;
-    overflow: hidden; /* Recorta lo que se desborde */
+    /* ALTURA FIJA: Crucial para la uniformidad */
+    aspect-ratio: 1 / 1.3;
+    /* Proporción ligeramente rectangular (más alto que ancho) como en tu imagen */
+    margin-bottom: 0.5rem;
+    overflow: hidden;
     border-radius: 8px;
 }
 
 .product-image {
     /* La imagen debe ocupar el 100% de su contenedor fijo */
     width: 100%;
-    height: 100%; 
+    height: 100%;
     /* Propiedad clave: Asegura que la imagen cubra el área sin distorsión */
-    object-fit: cover; 
+    object-fit: cover;
     display: block;
 }
 
@@ -69,21 +86,27 @@
 /* ---------------------------------------------------- */
 
 .product-name {
-    font-size: 1.1rem;
-    font-weight: 600;
+    /* Ajuste de tamaño para más líneas sin desbordar la tarjeta */
+    font-size: 0.95rem;
+    font-weight: 500;
     color: #4a4a4a;
     margin-bottom: 0.25rem;
+    /* Asegurar que el texto largo no rompa el diseño */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .product-price {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    color: #007bff; /* Azul vibrante para el precio */
-    margin-bottom: 0.5rem;
+    color: #007bff;
+    /* Azul vibrante para el precio */
+    margin-bottom: 0.25rem;
 }
 
 .product-stock {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #6c757d;
 }
 
