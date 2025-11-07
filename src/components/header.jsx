@@ -37,12 +37,22 @@ const Header = ({ cerrarSesion, rol }) => {
 
         {/* Si está logueado, mostrar "Cerrar sesión" */}
         {rol && (
+          <>
           <button
             onClick={cerrarSesion}
             className="text-gray-700 hover:text-red-500 text-sm font-medium"
           >
             Cerrar sesión
           </button>
+
+          
+            <Link
+              to="/admin"
+              className="text-gray-700 hover:text-teal-500 text-sm font-medium"
+            >
+              home
+            </Link>
+            </>
         )}
 
         {/* Icono de carrito */}
