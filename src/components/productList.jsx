@@ -11,7 +11,7 @@ const ProductList = () => {
       try {
         // La URL de tu backend en Render.
         const res = await fetch(" https://server-backend-vf5p.onrender.com/api/products");
-        
+
         // Manejo de errores de respuesta HTTP (404, 500, etc.)
         if (!res.ok) {
           const errorText = await res.text();
@@ -46,16 +46,16 @@ const ProductList = () => {
   return (
     <section className="main-content">
 
-     ´ <h2 className="title">Productos Disponibles</h2> 
+      ´ <h2 className="title">Productos Disponibles</h2>
       {/* Muestra el mensaje de error si existe */}
       {error && <p className="error-message">{error}</p>}
-      
+
       <div className="products">
 
         {productos.map((p) => (
           // Usamos p._id o p.id como clave única (key)
           <div className="product-card" key={p._id || p.id} >
-            
+
             {/* IMPLEMENTACIÓN CLAVE: El contenedor fijo de la imagen (para uniformidad) */}
             <div className="product-image-container">
               <img
@@ -68,9 +68,33 @@ const ProductList = () => {
             <h3 className="product-name">{p.nombre}</h3>
             <p className="product-price">${p.precio}</p>
             {/* Muestra el stock si está disponible, o un espacio vacío si no lo está */}
-           {/** <p className="product-stock">{p.stock ? `Stock: ${p.stock}` : ''}</p>*/} 
-           <p className="product-stock">{}</p> 
-            
+            {/** <p className="product-stock">{p.stock ? `Stock: ${p.stock}` : ''}</p>*/}
+            <p className="product-stock">{ }</p>
+
+
+            {/* 🚀 Nueva Sección: Botones de Acción */}
+            <div className="product-actions">
+              {/* Botón de WhatsApp (ejemplo de enlace) */}
+              <a
+                href={`https://wa.me/XXXXXXXXXX?text=Me%20interesa%20el%20producto:%20${p.nombre}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-whatsapp" // Clase para estilo de WhatsApp
+              >
+                📱 WhatsApp
+              </a>
+
+              {/* Botón de Detalles (ejemplo de manejo de evento o enlace) */}
+              <button
+                className="btn btn-details" // Clase para estilo de Detalles
+              // Aquí puedes añadir lógica de navegación, como un `onClick` que redirija o muestre un modal.
+              // onClick={() => handleViewDetails(p.id)} 
+              >
+                🔍 Detalles
+              </button>
+            </div>
+
+
           </div>
         ))}
 
